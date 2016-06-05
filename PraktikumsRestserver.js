@@ -1,8 +1,8 @@
 'use strict';
 var express = require("express");
 var app = express();
-var bodyparser ? require("body-parser");
-var psso = require("PSSO");
+var bodyparser = require("body-parser");
+
 
 var servePort = 3000; 
 
@@ -19,7 +19,7 @@ var faecher[
     {fachname: "Betriebswirtschaftslehre 2", praktikum: false}
     {fachname: "Betriebssysteme", praktikum: true}
     {fachname: "Wahlpflichtfach 1", praktikum: false}
-]
+];
 
 var studenten[
     {nameDesStudent: "Deborah Gäb", semester: 4, studeniengang: "Medieninformatik"}
@@ -28,7 +28,7 @@ var studenten[
     {nameDesStudent: "Ginny Weasley", semester: 2, studeniengang: "Medieninformatik"}
     {nameDesStudent: "Hermine Granger", semester: 4, studeniengang: "Medieninformatik"}
     {nameDesStudent: "Luna Lovegood", semester: 4, studeniengang: "Medieninformatik"}
-]
+];
 
 var studentInSTPraktikum[
     {nameDesStudent: "Deborah Gäb", bestanden: false}
@@ -38,9 +38,9 @@ var studentInSTPraktikum[
     {nameDesStudent: "Hermine Granger", bestanden: false}
     {nameDesStudent: "Luna Lovegood", bestanden: false}
     
-]
+];
 
-app.get('\fachMitPraktikum', function(rqu, res){
+app.get('\fachMitPraktikum', function(req, res){
     if(req.query.praktikum !== undefined){
         res.json(faecher.filter(function(e, i, arr){
             return e.faecher == req.query.praktikum.
@@ -50,7 +50,7 @@ app.get('\fachMitPraktikum', function(rqu, res){
         res.json(faecher);
     }
 
-   app.get('\studenten', function(rqu, res){
+   app.get('\studenten', function(req, res){
     if(req.query.semester !== undefined){
         res.json(faecher.filter(function(e, i, arr){
             return e.student == req.query.semester
@@ -66,6 +66,38 @@ app.get('\fachMitPraktikum', function(rqu, res){
                 }));
             }
              
-            )
+)
+    //Eroeffnung der Redisdatenbank
+var redis = require('redis');
+var client = redis.createClient(port, 'hostname', {no_ready_check: true});
+client.auth('password', function (err) {
+    if (err) then throw err;
+});
+
+client.on('connect', function() {
+    console.log('Connected to Redis');
+    // Schreiben der Datenbank
+
+client.set("Name", "Matrikelnummer", "Termin1", "Termin2", "Termin3", "Termin4", "Termin5", "Termin6", "Test",redis.print);
+client.hset("Romina Regenbogen", 11102844,"BE", "BE", "BE", "", "", "", "NB", redis.print);
+client.hset("Deborah Gaeb", 11102884,"BE", "BE", "BE", "", "", "", "BE", redis.print);
+client.hset("Susi Sonnenschein", 11102771,"BE", "BE", "BE", "", "", "", "BE", redis.print);
+client.hset("Hermine Granger", 11102134,"BE", "BE", "BE", "BE", "", "", "BE", redis.print);
+client.hset("Ginny Weasly", 11100104,"BE", "BE", "BE", "", "", "", "BE", redis.print);
+    client.hset("Luna Loovgood", 11107142,"BE", "BE", "BE", "BE", "", "", "BE", redis.print);
+client.hset("Hanna Heiter", 11102234,"BE", "BE", "BE", "BE", "", "", "BE", redis.print);
+
+client.hkeys("hash key", function (err, replies) {
+    console.log(replies.length + " replies:");
+    replies.forEach(function (reply, i) {
+        console.log("    " + i + ": " + reply);
+    });
+    client.quit();
     
 }));
+    
+    
+    
+    //Server eroeffnung 
+    app.listen(3000);
+    
