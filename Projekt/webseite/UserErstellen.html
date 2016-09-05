@@ -1,0 +1,93 @@
+<!DOCTYPE htlm5>
+<html>
+<header>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="main.css">
+</header>
+<body>
+    <center><h1> Registrienen </h1></center>
+    <form action="" method="POST" onsubmit="return registrieren()">
+    <center><table>
+        <tr>
+            <td><label for:"name"><h3>Name</h3></label> </td>
+            <td><input id:'name' type:"text"> </td>
+        </tr>
+        <tr>
+            <td><label for:"vorname"><h3>Vorname</h3></label> </td>
+            <td><input id:"vorname" type:"text"> </td>
+        </tr>
+        <tr>
+            <td><label for:"Studiengang"><h3>Studiengang</h3></label> </td>
+            <td>
+                <select><optgroup id:"studiengang", name="studiengang"> 
+                    <option label="Medieninformatik">Medieninformatik</option>
+                    <option label="Informatik">Informatik</option>
+                    <option label="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                    <option label="Technische Informatik">Technische Informatik</option>"> 
+                </optgroup></select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for:"semester"><h3> Semester</h3></label> </td>
+            <td><input id:"semester" type:"number"></td>
+        </tr>
+        <tr>
+            <td><label for:"campusID"> <h3>CampusID</h3> </label> </td>
+            <td><input id:"campusID" type:"text"> </td>
+        </tr>
+        <tr>
+            <td><label for:"password"><h3>Passwort</h3></label> </td>
+            <td><input id:"passwort" type:"password"> </td>
+        </tr>
+        <tr>
+            <td><label for:"status"><h3>Status</h3> </label> </td>
+            <td><select><optgroup id:"status", name="status"> 
+                    <option label="Professor">Professor</option>
+                    <option label="Student">Student</option>
+                    <option label="wissenschaftlicher Mitwarbeiter">wissenschaftlicher Mitwarbeiter</option>
+                    <option label="Hilfswissenschaftler">Hilfswissenschaftler</option>"> 
+            </optgroup></select></td>
+        </tr>
+        <tr>
+            <td> <button type="submit" onclick="">Anmelden</button><br/></td>
+            <td> <button type="button" id="users" onclick="window.location.href='/users'">Anzeigen</button></td>
+        </tr>
+    </table></center>
+    </form>
+</body>
+    
+
+<script type="text/javascript">
+  function pruefen(f) {
+      var fehler = "";
+      if (f.elements["name"].value == "")            fehler = "Name nicht angegeben";
+      if (f.elements["vorname"].value == "")         fehler = "Vorname nicht angegeben";  
+      if (f.elements["studiengang"].value == "")     fehler = "Studiengang nicht angegeben";
+      if (f.elements["semester"].value == "")        fehler = "semester nicht angegeben";
+      if (f.elements["campusID"].value == "")        fehler = "CampusID nicht angegeben";
+      if (f.elements["status"].value == "")          fehler = "Status nicht angegeben";
+      if ( fehler != "") {                           
+          alert(fehler);
+          return false;
+    }
+    registrieren();
+    return false;
+    }
+
+    
+//======================================================================================================
+    function registrieren() {
+      debugger;
+      console.log("Soll hier etwas machen");
+        var f = document.forms[0];
+        var xhr = XMLHttpRequest();
+        xhr.open("POST","/users",false);
+        xhr.setRequestHeader("Contet-type","application/json");
+        xhr.send(
+         JSON.parse("{'name':'"+f.elements["name"].value+"','vorname':'"+f.elements["name"].value+"','studiengang':'"+f.elements["studiengang"].value++"','semester':'"+ f.elements["semester"].value+ "','campusID':'"+f.elements["campusID"].value+"','status':'"+f.elements["status"].value+"','password':'"+f.elements["passwort"]+"''}")
+        );
+        console.log(xhr.responseText);
+        return false;
+    }
+  </script>
+</html>

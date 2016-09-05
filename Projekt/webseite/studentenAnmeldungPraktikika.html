@@ -1,0 +1,160 @@
+<!DOCTYPE=html5>
+<html>
+    <head> 
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <script type="text/javascript" src="http://localhost:8000/faye/praktkaErstellen.js"></script>
+    <center>
+        <table>
+            <form action="start.js" method="post">
+            <tr> <td colspan="2"><center><h1>Anmeldung für ein Praktikum </h1></center> </td></tr>
+            <tr>
+                <td><h3>Name</h3></td>
+                <td><input name="name" type="text"></td>
+            </tr>
+            <tr>
+                <td><h3>Vorname</h3></td> 
+                <td><input name="vorname" type="text"></td>
+            </tr>
+            <tr>
+                <td><h3>CampusID</h3></td> 
+                <td><input name="campusID" type="text"></td>
+            </tr>
+            <tr>
+                <td><h3>Studiengang:</h3></td>
+                <td><select><optgroup name="studiengang"> 
+                    <option label="Medieninformatik">Medieninformatik</option>
+                    <option label="Informatik">Informatik</option>
+                    <option label="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                    <option label="Technische Informatik">Technische Informatik</option>
+                </optgroup></select></td>
+            </tr>   
+            <tr>
+                <td><h3>Fach:</h3></td> 
+                <td><select><optgroup id:"fach1", name="fach">             
+                    <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
+                    <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
+                    <option label="Mathematik 1">Mathematik 1</option>
+                    <option label="Mathematik 2">Mathematik 2</option> 
+                    <option label="Kommunikation und Netze">Kommunikation und Netze</option>
+                    <option label="Datenbanken 1">Datenbanken 1</option>
+                    <option label="Projektmanegment">Projektmanagement</option>
+                    <option label="Algorithmik">Algorithmik</option>
+                    <option label="Paradigmen der Programmierung">Paradigmen der Programmierung</option>
+                    <option label="Datenbanken 2">Datenbanken 2</option>
+                    <option label="Softwaretechnik 1">Softwaretechnik 1 </option>
+                    <option label="Softwaretechnik 2">Softwaretechnik 2 </option>
+                    <option label="Mensch Computer Interaktion"> Mensch Computer Interaktion</option>
+                    <option label="Künstliche Intelligenz">Künstliche Intelligenz</option>
+                    <option label="Betriebsysteme">Betriebsysteme</option>
+                    <option label="Softwaretechnik">Softwaretechnik</option>
+                    <option label="Computergrafik und Annimation"> Computergrafik und Annimation</option>
+                </optgroup></select></td>
+            </tr>
+            <tr>
+                <td><h3>Fach:</h3></td> 
+                <td><select><optgroup id:"fach2", name="fach">             
+                    <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
+                    <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
+                    <option label="Mathematik 1">Mathematik 1</option>
+                    <option label="Mathematik 2">Mathematik 2</option> 
+                    <option label="Kommunikation und Netze">Kommunikation und Netze</option>
+                    <option label="Datenbanken 1">Datenbanken 1</option>
+                    <option label="Projektmanegment">Projektmanagement</option>
+                    <option label="Algorithmik">Algorithmik</option>
+                    <option label="Paradigmen der Programmierung">Paradigmen der Programmierung</option>
+                    <option label="Datenbanken 2">Datenbanken 2</option>
+                    <option label="Softwaretechnik 1">Softwaretechnik 1 </option>
+                    <option label="Softwaretechnik 2">Softwaretechnik 2 </option>
+                    <option label="Mensch Computer Interaktion"> Mensch Computer Interaktion</option>
+                    <option label="Künstliche Intelligenz">Künstliche Intelligenz</option>
+                    <option label="Betriebsysteme">Betriebsysteme</option>
+                    <option label="Softwaretechnik">Softwaretechnik</option>
+                    <option label="Computergrafik und Annimation"> Computergrafik und Annimation</option>
+                </optgroup></select></td>
+            </tr>    
+            <tr>
+                <td><h3>Fach:</h3></td> 
+                <td><select><optgroup id:"fach3", name="fach">             
+                    <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
+                    <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
+                    <option label="Mathematik 1">Mathematik 1</option>
+                    <option label="Mathematik 2">Mathematik 2</option> 
+                    <option label="Kommunikation und Netze">Kommunikation und Netze</option>
+                    <option label="Datenbanken 1">Datenbanken 1</option>
+                    <option label="Projektmanegment">Projektmanagement</option>
+                    <option label="Algorithmik">Algorithmik</option>
+                    <option label="Paradigmen der Programmierung">Paradigmen der Programmierung</option>
+                    <option label="Datenbanken 2">Datenbanken 2</option>
+                    <option label="Softwaretechnik 1">Softwaretechnik 1 </option>
+                    <option label="Softwaretechnik 2">Softwaretechnik 2 </option>
+                    <option label="Mensch Computer Interaktion"> Mensch Computer Interaktion</option>
+                    <option label="Künstliche Intelligenz">Künstliche Intelligenz</option>
+                    <option label="Betriebsysteme">Betriebsysteme</option>
+                    <option label="Softwaretechnik">Softwaretechnik</option>
+                    <option label="Computergrafik und Annimation"> Computergrafik und Annimation</option>
+                </optgroup></select></td>
+            </tr>    
+            <tr>
+                <td><h3>Fach:</h3></td> 
+                <td><select><optgroup id:"fach4", name="fach">             
+                    <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
+                    <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
+                    <option label="Mathematik 1">Mathematik 1</option>
+                    <option label="Mathematik 2">Mathematik 2</option> 
+                    <option label="Kommunikation und Netze">Kommunikation und Netze</option>
+                    <option label="Datenbanken 1">Datenbanken 1</option>
+                    <option label="Projektmanegment">Projektmanagement</option>                    
+                    <option label="Algorithmik">Algorithmik</option>
+                    <option label="Paradigmen der Programmierung">Paradigmen der Programmierung</option>
+                    <option label="Datenbanken 2">Datenbanken 2</option>
+                    <option label="Softwaretechnik 1">Softwaretechnik 1 </option>
+                    <option label="Softwaretechnik 2">Softwaretechnik 2 </option>
+                    <option label="Mensch Computer Interaktion"> Mensch Computer Interaktion</option>
+                    <option label="Künstliche Intelligenz">Künstliche Intelligenz</option>
+                    <option label="Betriebsysteme">Betriebsysteme</option>
+                    <option label="Softwaretechnik">Softwaretechnik</option>
+                    <option label="Computergrafik und Annimation"> Computergrafik und Annimation</option>
+                </optgroup></select></td>
+            </tr>    
+            <tr>
+                <td><center><input type="button" value="speichern" onClick="<praktikumErstellen(this.form)"></center></td>
+            </tr>
+        </form>
+        </table>
+    </center>
+
+<script type="text/javascript">
+  function pruefen(f) {
+      var fehler = "";
+      if (f.elements["name"].value=="")                    fehler = "Name nicht angegeben";
+      if (f.elements["vorname"].value=="")                 fehler = "Vorname nicht angegeben";
+      if (f.elements["campusID"].value=="")                fehler = "CampusID nicht angegeben";
+      if  (f.elements["studiengang"].value == "")          fehler = "Studiengang nicht angegeben";  
+      if (f.elements["fach"].value == "")                  fehler = "Fach nicht angegeben";
+      if ( fehler != "") {                           
+          alert(fehler);
+          return false;
+    }
+    registrieren();
+    return false;
+    }
+
+    
+//======================================================================================================
+    function praktikaErstellen() {
+      debugger;
+      console.log("Soll hier etwas machen");
+        var f = document.forms[0];
+        var xhr = XMLHttpRequest();
+        xhr.open("POST","/users/praktikumsuebersicht",false);
+        xhr.setRequestHeader("Contet-type","application/json");
+        xhr.send(
+         JSON.parse("{'name': '"+f.elements["name"].value+"','vorname':'"+f.elements["vorname"].value+"' ,'campusID':'"+ f.elements["campusID"].value+ "','studiengang': '" + f.elements["studiengang"].value+"' ,'fach1': '" +f.elements["fach1"].value+"', 'fach2': '" +f.elements["fach2"]+"', 'fach3': '" +f.elements["fach3"]+"', 'fach4': '" +f.elements["fach4"]+"''}")
+        );
+        console.log(xhr.responseText);
+        return false;
+    }
+  </script>
+</html>
