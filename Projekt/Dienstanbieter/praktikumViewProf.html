@@ -1,0 +1,146 @@
+<!DOCTYPE html5> 
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" href="main.css">
+        <title> Verwaltung Praktika</title>
+    </head>
+    <body>
+        <ul>
+        <li><a href="http://localhost:3000/praktikaErtsellen">Praktika erstellen</a></li>
+        <li><a href="http://localhost:3000/praktikumsViewStudenten"> Praktikumsview</a></li>
+        <li><a href="#">Verwaltung Praktika</a></li>
+        <li><a href="http://localhost:3000/anmeldenPraktika">Anmeldung für Praktika</a></li>
+    </ul>
+        <h1> Praktikumsübersicht </h1>
+        <p> Hallo Herr Prof. Dumbledore </p>
+        <p> Ihre Praktika sind: </p>
+    <table border="1">
+        <tr>
+            <td> Fach </td>
+            <td> Name </td>
+            <td> Vorname </td>
+            <td> Raum </td>
+            <td> Datum </td>
+            <td> Uhrzeit </td>
+            <td> Anwesenheit </td>
+            <td> Bestanden </td>
+        </tr>
+        <tr>
+            <td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 10.04.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_1a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cbox1Fach1_1b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        <tr>
+            <td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 17.04.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_2a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_2b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        <tr>
+            <td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 24.04.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_3a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_3b" value="first_checkbox"> </label><br></center> </td>
+        </tr>
+        <tr><td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 31.04.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_4a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_4b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        <tr><td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 17.04.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_5a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_5b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        <tr><td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 07.05.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_6a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_6b" value="first_checkbox"> </label><br> </center> </td>   
+        </tr>
+        <tr><td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 14.05.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_7a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_7b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        <tr><td> Betriebssysteme </td>
+            <td> Granger </td>
+            <td> Hermine Jean </td>
+            <td> 2.122 </td>
+            <td> 21.05.2016 </td>
+            <td> 11.00 - 13:00 </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_8a" value="first_checkbox"> </label><br> </center> </td>
+            <td> <center><label><input type="checkbox" id="cboxFach1_8b" value="first_checkbox"> </label><br> </center> </td>
+        </tr>
+        
+        
+    </table>
+    </body>     
+</html>
+<script type="text/javascript" src="http://localhost:8000/faye/client.js"></script>
+<script>
+    var client = new Faye.Client("http://localhost:8000/faye/user/praktikumsuebersicht.html");
+    function publish() {
+        console.log("ich legen ein neues Praktik an. ");
+        var pratikaErstellen  = {
+            "cboxFach1_1a":           ducument.getElementById('cboxFach1_1a').value,
+            "cboxFach1_1b":           ducument.getElementById('cboxFach1_1b').value,
+            "cboxFach1_2a":           ducument.getElementById('cboxFach1_2a').value,
+            "cboxFach1_2b":           ducument.getElementById('cboxFach1_2b').value,
+            "cboxFach1_3a":           ducument.getElementById('cboxFach1_3a').value,
+            "cboxFach1_3b":           ducument.getElementById('cboxFach1_3b').value,
+            "cboxFach1_4a":           ducument.getElementById('cboxFach1_4a').value,
+            "cboxFach1_4b":           ducument.getElementById('cboxFach1_4b').value,
+            "cboxFach1_5a":           ducument.getElementById('cboxFach1_5a').value,
+            "cboxFach1_5b":           ducument.getElementById('cboxFach1_5b').value,
+            "cboxFach1_6a":           ducument.getElementById('cboxFach1_6a').value,
+            "cboxFach1_6b":           ducument.getElementById('cboxFach1_6b').value,
+            "cboxFach1_7a":           ducument.getElementById('cboxFach1_7a').value,
+            "cboxFach1_7b":           ducument.getElementById('cboxFach1_7b').value,
+            "cboxFach1_8a":           ducument.getElementById('cboxFach1_8a').value,
+            "cboxFach1_8b":           ducument.getElementById('cboxFach1_8b').value 
+        };
+        
+        console.log(userdata);
+        var publication = client.publish('/praktikaErstellen', userdata);
+        publication.then(
+                function () {
+                    console.log("nachricht wurde versendet.");
+                },
+                function (error) {
+                    console.log("nachricht wurde nicht versendet");
+                    next(error);
+                }
+        );
+        return false;
+    }
+</script>

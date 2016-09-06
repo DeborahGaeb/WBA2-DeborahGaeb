@@ -3,8 +3,18 @@
     <head> 
         <meta charset="utf-8"> 
         <link rel="stylesheet" href="main.css">
+        <title> Anmeldung für Praktika</title>
     </head>
     <script type="text/javascript" src="http://localhost:8000/faye/praktkaErstellen.js"></script>
+    <body>
+    <ul>
+        <li><a href="http://localhost:3000/praktikaErtsellen">Praktika erstellen</a></li>
+        <li><a href="http://localhost:3000/praktikumsViewStudenten"> Praktikumsview</a></li>
+        <li><a href="http://localhost:3000/praktikumViewProf">Verwaltung Praktika</a></li>
+        <li><a href="#">Anmeldung für Praktika</a></li>
+    </ul>
+    </body>
+          
     <center>
         <table>
             <form action="start.js" method="post">
@@ -33,7 +43,7 @@
             </tr>      
             <tr>
                 <td><h3>Studiengang:</h3></td>
-                <td><select><optgroup name="studiengang"> 
+                <td><select><optgroup name="studiengang" id="studiengang"> 
                     <option label="Medieninformatik">Medieninformatik</option>
                     <option label="Informatik">Informatik</option>
                     <option label="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
@@ -50,20 +60,20 @@
             </tr>  
             <tr>
                 <td><label for:"gesamtGruppengroesse"><h3>gesamt Gruppengröße:</h3></label></td> 
-                <td><input name="gesamtGruppengroesse" type="number"></td>
+                <td><input name="gesamtGruppengroesse" id="gesamtGruppengroesse" type="number"></td>
             </tr> 
             <tr>
                 <td><h3>Terminelänge:</h3></td> <td><label><input name="stundenLaenge" type="number"></label></td>
             </tr> 
             <tr><td> <h3>Gruppenarbeit:</h3> </td><td>
-               <select><optgroup label="Gruppenarbeit">
+               <select><optgroup label="Gruppenarbeit" id = "gruppenarbeit">
                    <option label="Ja">Ja</option>
                    <option label="Nein">Nein</option>
                 </optgroup></select>
             </td></tr> 
             <tr>
-                <td><label for:"gruppengroesse"><h3>Gruppengröße:</h3></label> </td>
-                <td><input name="Gruppengröße" type="number"></td>
+                <td><label for:"gruppenaarbeitsgroesse"><h3>Gruppenarbeitsgröße:</h3></label> </td>
+                <td><input name="Gruppengröße" id:"gruppenarbeitsgroeese" type="number"></td>
             </tr> 
             <tr>
                 <td><center><input type="button" value="speichern" onClick="<praktikumErstellen(this.form)"></center></td>
@@ -72,39 +82,32 @@
         </table>
     </center>
 
-<script type="text/javascript">
-  function pruefen(f) {
-      var fehler = "";
-      if (f.elements["fach"].value == "")                  fehler = "Fach nicht angegeben";
-      if  (f.elements["studiengang"].value == "")          fehler = "Studiengang nicht angegeben";
-      if  (f.elements["anzahlDerTermine"].value == "")     fehler = "Vorname nicht angegeben";  
-      if (f.elements["gesamtGruppengroesse"].value == "")  fehler = "gesamt Gruppengröße nicht angegeben";
-      if (f.elements["terminlaenge"].value == "")          fehler = "CampusID nicht angegeben";
-      if (f.elements["gruppenarbeit"].value == "")         fehler = "Gruppenarbeiter nicht angegeben";
-      if (f.elements["gruppengroesse"].value == "")        fehler = "Gruppengröße nicht angegeben";
-          
-      if ( fehler != "") {                           
-          alert(fehler);
-          return false;
-    }
-    registrieren();
-    return false;
-    }
-
-    
-//======================================================================================================
-    function praktikaErstellen() {
-      debugger;
-      console.log("Soll hier etwas machen");
-        var f = document.forms[0];
-        var xhr = XMLHttpRequest();
-        xhr.open("POST","/users",false);
-        xhr.setRequestHeader("Contet-type","application/json");
-        xhr.send(
-         JSON.parse("{'fach': '"+f.elements["fach"].value+"','studiengang':'"+f.elements["studiengang"].value+"' ,'anzahlDerTermine':'"+ f.elements["anzahlDerTermine"].value+ "','gesamtGruppengroesse': '" + f.elements["gesamtGruppengroesse"].value+"' ,'gruppenarbeit': '" +f.elements["gruppenarbeit"].value+"', 'gruppengroesse': '" +f.elements["gruppengroesse"]+"''}")
+<script type="text/javascript" src="http://localhost:8000/faye/client.js"></script>
+<script>
+    var client = new Faye.Client("http://localhost:8000/faye");
+    function publishPraktikaErstellen() {
+        console.log("ich legen ein neues Praktik an. ");
+        var pratikaErstellen  = {
+            "fach":                  document.getElementById('fach').value,
+            "studiengang":           document.getElementById('studiengang').value,
+            "anzahlDerTermine":      document.getElementById('anzaglDerTermine').value,
+            "gesamtGruppengroesse":  document.getElementById('gesamtGruppengroesse').value,
+            "gruppenarbeit":         document.getElementById('gruppenarbeit').value,
+            "gruppenarbeitsgroeese": document.getElementById('gruppenarbeitsgroeese').value
+        };
+        
+        console.log(userdata);
+        var publication = client.publish('/praktikaErstellen', userdata);
+        publication.then(
+                function () {
+                    console.log("nachricht wurde versendet.");
+                },
+                function (error) {
+                    console.log("nachricht wurde nicht versendet");
+                    next(error);
+                }
         );
-        console.log(xhr.responseText);
         return false;
     }
-  </script>
+</script>
 </html>

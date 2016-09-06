@@ -3,27 +3,33 @@
     <head> 
         <meta charset="utf-8"> 
         <link rel="stylesheet" href="main.css">
+        <title> Anmeldung für Praktika </title>
     </head>
-    <script type="text/javascript" src="http://localhost:8000/faye/praktkaErstellen.js"></script>
+    <ul>
+        <li><a href="http://localhost:3000/praktikaErtsellen">Praktika erstellen</a></li>
+        <li><a href="http://localhost:3000/praktikumsViewStudenten"> Praktikumsview</a></li>
+        <li><a href="http://localhost:3000/praktikumViewProf">Verwaltung Praktika</a></li>
+        <li><a href="#">Anmeldung für Praktika</a></li>
+    </ul>
     <center>
         <table>
             <form action="start.js" method="post">
             <tr> <td colspan="2"><center><h1>Anmeldung für ein Praktikum </h1></center> </td></tr>
             <tr>
                 <td><h3>Name</h3></td>
-                <td><input name="name" type="text"></td>
+                <td><input name="name" id="name" type="text"></td>
             </tr>
             <tr>
                 <td><h3>Vorname</h3></td> 
-                <td><input name="vorname" type="text"></td>
+                <td><input name="vorname" id="vorname" type="text"></td>
             </tr>
             <tr>
                 <td><h3>CampusID</h3></td> 
-                <td><input name="campusID" type="text"></td>
+                <td><input name="campusID" id="campusID" type="text"></td>
             </tr>
             <tr>
                 <td><h3>Studiengang:</h3></td>
-                <td><select><optgroup name="studiengang"> 
+                <td><select><optgroup id="studiengang" name="studiengang"> 
                     <option label="Medieninformatik">Medieninformatik</option>
                     <option label="Informatik">Informatik</option>
                     <option label="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
@@ -32,7 +38,8 @@
             </tr>   
             <tr>
                 <td><h3>Fach:</h3></td> 
-                <td><select><optgroup id:"fach1", name="fach">             
+                <td><select><optgroup id:"fach1" id="fach1" name="fach">     
+                    <option label="keine Anmeldung"> keine Anmeldung </option>
                     <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
                     <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
                     <option label="Mathematik 1">Mathematik 1</option>
@@ -54,7 +61,8 @@
             </tr>
             <tr>
                 <td><h3>Fach:</h3></td> 
-                <td><select><optgroup id:"fach2", name="fach">             
+                <td><select><optgroup id:"fach2" name="fach">   
+                    <option label="keine Anmeldung"> keine Anmeldung </option>
                     <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
                     <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
                     <option label="Mathematik 1">Mathematik 1</option>
@@ -76,7 +84,8 @@
             </tr>    
             <tr>
                 <td><h3>Fach:</h3></td> 
-                <td><select><optgroup id:"fach3", name="fach">             
+                <td><select><optgroup id:"fach3", name="fach">       
+                    <option label="keine Anmeldung"> keine Anmeldung </option>
                     <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
                     <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
                     <option label="Mathematik 1">Mathematik 1</option>
@@ -98,9 +107,10 @@
             </tr>    
             <tr>
                 <td><h3>Fach:</h3></td> 
-                <td><select><optgroup id:"fach4", name="fach">             
-                    <option label="Alogrimen und Programmieren 1">Alogrimen und Programmieren 1</option>
-                    <option label="Alogrimen und Programmieren 2">Alogrimen und Programmieren 2</option>
+                <td><select><optgroup id:"fach4", name="fach">    
+                    <option label="keine Anmeldung"> keine Anmeldung </option>
+                    <option label="Alogrimen und Programmieren 1">Algoritmen und Programmieren 1</option>
+                    <option label="Alogrimen und Programmieren 2">Algoritmen und Programmieren 2</option>
                     <option label="Mathematik 1">Mathematik 1</option>
                     <option label="Mathematik 2">Mathematik 2</option> 
                     <option label="Kommunikation und Netze">Kommunikation und Netze</option>
@@ -125,36 +135,32 @@
         </table>
     </center>
 
-<script type="text/javascript">
-  function pruefen(f) {
-      var fehler = "";
-      if (f.elements["name"].value=="")                    fehler = "Name nicht angegeben";
-      if (f.elements["vorname"].value=="")                 fehler = "Vorname nicht angegeben";
-      if (f.elements["campusID"].value=="")                fehler = "CampusID nicht angegeben";
-      if  (f.elements["studiengang"].value == "")          fehler = "Studiengang nicht angegeben";  
-      if (f.elements["fach"].value == "")                  fehler = "Fach nicht angegeben";
-      if ( fehler != "") {                           
-          alert(fehler);
-          return false;
-    }
-    registrieren();
-    return false;
-    }
-
-    
-//======================================================================================================
-    function praktikaErstellen() {
-      debugger;
-      console.log("Soll hier etwas machen");
-        var f = document.forms[0];
-        var xhr = XMLHttpRequest();
-        xhr.open("POST","/users/praktikumsuebersicht",false);
-        xhr.setRequestHeader("Contet-type","application/json");
-        xhr.send(
-         JSON.parse("{'name': '"+f.elements["name"].value+"','vorname':'"+f.elements["vorname"].value+"' ,'campusID':'"+ f.elements["campusID"].value+ "','studiengang': '" + f.elements["studiengang"].value+"' ,'fach1': '" +f.elements["fach1"].value+"', 'fach2': '" +f.elements["fach2"]+"', 'fach3': '" +f.elements["fach3"]+"', 'fach4': '" +f.elements["fach4"]+"''}")
+<script type="text/javascript" src="http://localhost:8000/faye/client.js"></script>
+<script>
+    var client = new Faye.Client("http://localhost:8000/faye");
+    function publishPraktikum() {
+        console.log("Eine neue Anmeldung liegt für ein Praktikum liegt vor. ");
+        var userdata = {
+            "campusID":    document.getElementById('campusID').value,
+            "passwort":    document.getElementById('passwd').value,
+            "vorname":     document.getElementById('vorname').value,
+            "name":        document.getElementById('name').value,
+            "studiengang": document.getElementById('studiengang').value
+        };
+        
+        console.log(userdata);
+        var publication = client.publish('/user', userdata);
+        publication.then(
+                function () {
+                    console.log("nachricht wurde versendet.");
+                },
+                function (error) {
+                    console.log("nachricht wurde nicht versendet");
+                    next(error);
+                }
         );
-        console.log(xhr.responseText);
         return false;
     }
-  </script>
+</script>
+
 </html>

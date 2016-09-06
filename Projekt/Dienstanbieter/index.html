@@ -1,18 +1,20 @@
 <!DOCTYPE=html5>
 <html>
     <header> 
-        
-    </header>
-    <head> 
-        <script type="text/javascript" src="http://localhost:3000/faye/client.js"></script>
         <meta charset="utf-8"> 
         <link rel="stylesheet" href="main.css">
+        <title> Login </title>
+    </header>
+    <head> 
+        <link rel="stylesheet" href="main.css">
+        <meta charset="utf-8"> 
+        <title> Login </title>
     </head>
     <script type="text/javascript">
         function userLogin(form) {
 	       if (form.id.value=="dgaeb") { 
                if (form.pass.value=="wba2") {              
-                   location="http://localhost:8000/auswahl" 
+                   location="http://localhost:3000/auswahl" 
                } else {
                    alert("Invalid Password")
                }
@@ -21,7 +23,7 @@
            }
         }
         function newUser(from) {
-           location="http://localhost:3000/UserErstellen.html"
+           location="http://localhost:3000/UserErstellen"
         }
     </script>
     <center>

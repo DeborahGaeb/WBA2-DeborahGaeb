@@ -1,0 +1,82 @@
+<!DOCTYPE htlm5>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="main.css">
+    <title> Anmelden </title>
+</head>
+<body>
+    <nav>
+        <a href="http://localhost:3000/login.html">Login</a>
+    </nav>
+    
+    <center><h1> Registrieung </h1></center>
+    <form action="" method="POST" onsubmit="return registrieren()">
+    <center><table>
+    <tr>
+        <td><label for="campusID"> CampusID </label></td>
+        <td><input type="text" id="campusID" size="15" maxlength="30" required> </td>
+    </tr>
+    <tr>
+        <td><label for="passwd"> Passwort </label></td>
+        <td><input type="password" id="passwd" size="15" maxlength="40" required></td>
+    </tr>
+    <tr>
+        <td><label for="vorname"> Vorname </label></td>
+        <td><input type="text" id="vorname" size="15" maxlength="30" required> </td>
+    </tr>
+    <tr>
+        <td><label for:"studiengang"> Studiengang </label> </td>
+        <td><select><optgroup id:"studiengang" name="studiengang" required> 
+                    <option label="Medieninformatik">Medieninformatik</option>
+                    <option label="Informatik">Informatik</option>
+                    <option label="Wirtschaftsinformatik">Wirtschaftsinformatik</option>
+                    <option label="Technische Informatik">Technische Informatik</option>"> 
+        </optgroup></select></td>
+        </tr>
+        <tr>
+            <td><label for:"status">Status </label> </td>
+            <td><select><optgroup id:"status", name="status"> 
+                    <option label="Professor">Professor</option>
+                    <option label="Student">Student</option>
+                    <option label="wissenschaftlicher Mitwarbeiter">wissenschaftlicher Mitwarbeiter</option>
+                    <option label="Hilfswissenschaftler">Hilfswissenschaftler</option>"> 
+            </optgroup></select></td>
+        </tr>
+        <tr>
+            <td> <button type="submit" onclick="">Anmelden</button><br/></td>
+            <td> <button type="button" id="users" onclick="window.location.href='/users'">Anzeigen</button></td>
+        </tr>
+    </table></center>
+    </form>
+</body>
+    
+<script type="text/javascript" src="http://localhost:8000/faye/client.js"></script>
+<script>
+    var client = new Faye.Client("http://localhost:8000/faye/UserErstellen.html");
+    function publishUser() {
+        console.log("ich legen einen Neuen User an. ");
+        var userdata = {
+            "campusID": document.getElementById('campusID').value,
+            "passwort": document.getElementById('passwd').value,
+            "vorname": document.getElementById('vorname').value,
+            "name": document.getElementById('name').value,
+            "studiengang": document.getElementById('studiengang').value,
+            "studiengang": document.getElementById('studysubject').value 
+        };
+        
+        console.log(userdata);
+        var publication = client.publish('/user', userdata);
+        publication.then(
+                function () {
+                    console.log("nachricht wurde versendet.");
+                },
+                function (error) {
+                    console.log("nachricht wurde nicht versendet");
+                    next(error);
+                }
+        );
+        return false;
+    }
+</script>
+</html>
